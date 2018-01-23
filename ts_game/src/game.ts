@@ -6,14 +6,17 @@ class CardBox
     constructor(size: number) 
     {
         this.cards=[size];
-        for(var i = 0 ; i < size ; i ++)
-           this.cards[i]=i;
-        _.shuffle(this.cards);
+        for(let i = 0 ; i < size ; i ++)
+            this.cards[i]=i;
+       this.cards = _.shuffle(this.cards);
+       
     }
 
-    show(): void{
-        for(var i in this.cards)
-            console.log(i);
+    show(): void
+    {
+        //in是遍历key值
+        for(let i in this.cards)
+            console.log(this.cards[i]);
     }
 }
 
