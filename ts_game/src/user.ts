@@ -1,0 +1,31 @@
+class User
+{
+    //牌组
+    cards: Array<number>;
+    position: number;
+
+    constructor(position: number)
+    {
+        this.position = position;
+        this.cards = [];
+    }
+
+    addCards(cs: Array<number>): void
+    {
+        this.cards.concat(cs);
+    }
+
+    addCard(c: number): void
+    {
+        this.cards.push(c);
+    }
+
+    removeCard(c: number):void
+    {
+       let i = this.cards.indexOf(c);
+       if(i >= 0)
+        this.cards.slice(i,i+1);
+    }
+}
+
+export{User}
