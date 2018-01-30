@@ -3,5 +3,5 @@ import {Card} from './card';
 import {User} from './user';
 
 let cb = new CardBox(54);
-let get = cb.getCard(4);
+let get = cb.getCard(1,4);
 console.log(get);

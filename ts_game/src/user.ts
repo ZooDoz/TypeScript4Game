@@ -1,7 +1,10 @@
+
+import {Card} from './card';
+
 class User
 {
     //牌组
-    cards: Array<number>;
+    cards: Array<Card>;
     position: number;
 
     constructor(position: number)
@@ -10,21 +13,21 @@ class User
         this.cards = [];
     }
 
-    addCards(cs: Array<number>): void
+    addCards(cs: Array<Card>): void
     {
         this.cards.concat(cs);
     }
 
-    addCard(c: number): void
+    addCard(c: Card): void
     {
         this.cards.push(c);
     }
 
-    removeCard(c: number):void
+    removeCard(c: Card):void
     {
-       let i = this.cards.indexOf(c);
-       if(i >= 0)
-        this.cards.slice(i,i+1);
+        let i = this.cards.indexOf(c);
+        if (i >= 0)
+            this.cards.slice(i, 1);
     }
 }
 
