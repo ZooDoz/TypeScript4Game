@@ -15,7 +15,7 @@ class User
 
     addCards(cs: Array<Card>): void
     {
-        this.cards.concat(cs);
+        this.cards.push.apply(this.cards , cs);
     }
 
     addCard(c: Card): void
@@ -28,6 +28,16 @@ class User
         let i = this.cards.indexOf(c);
         if (i >= 0)
             this.cards.slice(i, 1);
+    }
+
+    getPosition(): number
+    {
+        return this.position;
+    }
+
+    show(): void
+    {
+        console.log(this.cards);
     }
 }
 

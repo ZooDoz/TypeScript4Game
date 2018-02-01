@@ -25,11 +25,11 @@ class CardBox
         console.log(this.cards);
     }
 
-    getCard(p:number,size: number): Array<Card>
+    getCard(p:number,index:number,size: number): Array<Card>
     {
         if(this.cards.length < size)
             return [];
-        let ret = this.cards.splice(0,size);
+        let ret = this.cards.splice(index,size);
         ret.forEach(function (c: Card) {
             c.create4User(p);
         });
