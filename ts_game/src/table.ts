@@ -1,6 +1,7 @@
 import {CardBox} from './cardBox';
 import {Card} from './card';
 import {User} from './user';
+import * as ReadLine from 'readline'
 
 class Table
 {
@@ -35,18 +36,38 @@ class Table
 
     initCard(): void
     {
-        for(let i = 0 ; i < 12 ; i++)
+        for(let i = 0 ; i < 16 ; i++)
         {
             let u = this.us[ i % this.us.length];
-            let getCards = this.cb.getCard(u.getPosition(),0,4);
-            this.cs.push.apply(this.cs , getCards)
+            let getCards;
+            if(i >= 12)
+                getCards = this.cb.getCard(u.getIndex(),0,1);
+            else
+                getCards = this.cb.getCard(u.getIndex(),0,4);
+            // this.cs.push.apply(this.cs , getCards)
             u.addCards(getCards);
         }
-        let u = this.us[0];
-        let card1 = this.cb.getCard(u.getPosition(),0,1);
-        let card2 = this.cb.getCard(u.getPosition(),1,1);
-        u.addCards(card1);
-        u.addCards(card2);
+    }
+
+    getCard(): void
+    {
+        let u = this.us[this.i];
+        let getCards = this.cb.getCard(u.getIndex(),0,1);
+        // this.cs.push.apply(this.cs , getCards)
+        u.addCards(getCards);
+        u.readRemove(this);
+    }
+
+    dropCard(i:number): void
+    {
+        let cu = this.us[this.i];
+        let dc = cu.removeCardByIndex(i);
+        this.askDrop(dc , cu.getIndex() + 1);
+    }
+
+    askDrop(c:Card , i: number): void
+    {
+        let cu = this.us[i];
     }
 }
 export{Table}

@@ -7,8 +7,11 @@ class Card
     //牌的位置
     i: number;
 
-    sv: number;
+    //类型
     si: number;
+    //牌显示值
+    sv: number;
+    //牌显示字符
     ss: string;
 
     constructor(v:number)
@@ -24,21 +27,21 @@ class Card
                 {
                     this.si = rs;
                     this.ss = "万";
-                    this.sv = rv % 4;
+                    this.sv = rv % 4 + 1;
                     break;
                 }
                 case 1:
                 {
                     this.si = rs;
                     this.ss = "条";
-                    this.sv = rv % 4;
+                    this.sv = rv % 4 + 1;
                     break;
                 }
                 case 2:
                 {
                     this.si = rs;
                     this.ss = "筒";
-                    this.sv = rv % 4;
+                    this.sv = rv % 4 + 1;
                     break;
                 }
                 default:
@@ -58,49 +61,42 @@ class Card
                 {
                     this.si = rs;
                     this.ss = "白";
-                    this.sv = rv;
                     break;
                 }
                 case 1:
                 {
                     this.si = rs;
                     this.ss = "东";
-                    this.sv = rv;
                     break;
                 }
                 case 2:
                 {
                     this.si = rs;
                     this.ss = "南";
-                    this.sv = rv;
                     break;
                 }
                 case 3:
                 {
                     this.si = rs;
                     this.ss = "西";
-                    this.sv = rv;
                     break;
                 }
                 case 4:
                 {
                     this.si = rs;
                     this.ss = "北";
-                    this.sv = rv;
                     break;
                 }
                 case 5:
                 {
                     this.si = rs;
                     this.ss = "红";
-                    this.sv = rv;
                     break;
                 }
                 case 6:
                 {
                     this.si = rs;
                     this.ss = "发";
-                    this.sv = rv;
                     break;
                 }
                 default:

@@ -12,6 +12,5 @@ tb.join(u3);
 tb.join(u4);
 
 tb.initCard();
-
-u1.show();
+tb.getCard();
 

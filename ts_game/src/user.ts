@@ -1,15 +1,21 @@
 
 import {Card} from './card';
+import * as readline from 'readline'
+import {Table} from './table'
 
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
 class User
 {
     //牌组
     cards: Array<Card>;
-    position: number;
+    index: number;
 
-    constructor(position: number)
+    constructor(index: number)
     {
-        this.position = position;
+        this.index = index;
         this.cards = [];
     }
 
@@ -27,18 +33,58 @@ class User
     {
         let i = this.cards.indexOf(c);
         if (i >= 0)
-            this.cards.slice(i, 1);
+            this.cards.slice(i, i+1);
     }
 
-    getPosition(): number
+    removeCardByIndex(i: number): Card
     {
-        return this.position;
+        return this.cards.slice(i, i+1)[0];
+    }
+
+    getIndex(): number
+    {
+        return this.index;
     }
 
     show(): void
     {
         console.log(this.cards);
     }
+
+    readRemove(t:Table): void
+    {
+        let ci = "";
+        for(let i = 0 ; i < this.cards.length ; i++)
+        {
+            let c = this.cards[i];
+            if(c.sv)
+                ci += c.sv+c.ss+" ";
+            else
+                 ci += c.ss+" ";
+        }
+        ci = ci + "\n" + "remove card ?\n";
+        rl.question(ci , function(answer)
+        {
+            rl.close();
+            t.dropCard(parseInt(answer));
+        });
+    }
+
+    readAskDrop(c: Card , t:Table): void
+    {
+        let ci = "";
+        if (c.sv)
+            ci += c.sv + c.ss + " ";
+        else
+            ci += c.ss + " ";
+        ci = ci + "\n" + "remove card ?\n";
+        rl.question(ci , function(answer)
+        {
+            rl.close();
+            t.dropCard(parseInt(answer));
+        });
+    }
+    
 }
 
 export{User}
