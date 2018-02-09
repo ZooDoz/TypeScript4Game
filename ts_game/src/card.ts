@@ -16,6 +16,12 @@ class Card
 
     constructor(v:number)
     {
+        this.p = -1;
+        this.i = -1;
+        this.si = -1;
+        this.sv = -1;
+        this.ss = '';
+        
         this.v  = v;
         if(v <= 107)
         {

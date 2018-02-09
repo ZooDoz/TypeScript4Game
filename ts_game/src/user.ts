@@ -3,10 +3,7 @@ import {Card} from './card';
 import * as readline from 'readline'
 import {Table} from './table'
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+
 class User
 {
     //牌组
@@ -50,39 +47,73 @@ class User
     {
         console.log(this.cards);
     }
-
+    /**
+     * 尝试打出一张牌到table
+     * @param t 
+     */
     readRemove(t:Table): void
     {
         let ci = "";
         for(let i = 0 ; i < this.cards.length ; i++)
         {
             let c = this.cards[i];
-            if(c.sv)
+            if(c.sv > 0)
                 ci += c.sv+c.ss+" ";
             else
                  ci += c.ss+" ";
         }
-        ci = ci + "\n" + "remove card ?\n";
+        ci = this.index + "\n" + "remove card ?\n" + ci + "\n";
+
+        let rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+          });
         rl.question(ci , function(answer)
         {
             rl.close();
             t.dropCard(parseInt(answer));
         });
     }
-
+    
+    /**
+     * 判断是否吃牌
+     * @param c 
+     * @param t 
+     */
     readAskDrop(c: Card , t:Table): void
     {
         let ci = "";
-        if (c.sv)
+        if (c.sv > 0)
             ci += c.sv + c.ss + " ";
         else
             ci += c.ss + " ";
-        ci = ci + "\n" + "remove card ?\n";
+        ci = this.index + " " + "got card ?\n" + ci + "\n";
+        let index = this.index;
+        let rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+          });
         rl.question(ci , function(answer)
         {
             rl.close();
-            t.dropCard(parseInt(answer));
+            if(answer == '0')
+            {
+                console.log("pass");
+                t.askDrop(c , index + 1);
+            }
+            else
+                t.eatDrop(c , index);
         });
+    }
+
+    /**
+     * 吃掉牌,并打出一张牌
+     * @param c 
+     */
+    eat(c:Card , t:Table)
+    {
+        //TODO 判断是否赢了
+        this.readRemove(t);
     }
     
 }
